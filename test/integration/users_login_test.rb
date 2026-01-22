@@ -29,4 +29,13 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", logout_path
     assert_select "a[href=?]", user_path(@user)
   end
+
+  test "should still work after logout in second window" do
+    delete logout_path
+    assert_redirected_to root_url
+  end
+
+  # test "authenticated? should return false for a user with nil digest" do
+  #   assert_not @user.authenticated?('')
+  # end
 end
